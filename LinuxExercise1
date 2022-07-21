@@ -1,0 +1,16 @@
+Exercise: Basic Commands to Survive
+
+1. pwd
+2. cd /var/log
+3. cd ..
+4. pwd
+5. ls
+6. ls -l
+7. ls -l -t -r
+8. cd /
+9. cd
+10. cd ..
+11. ls man 
+12. cd /var
+13. ls -S -r -h
+14. lscpu
