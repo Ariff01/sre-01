@@ -1,0 +1,26 @@
+Exercise 2
+
+1. cd /home
+2. ls
+3. mkdir Algo1 
+4. mkdir config bin log scripts
+5. touch config.congfig variables
+6. touch start.sh stop.sh admin.sh
+7. touch today.log
+8. cd /home
+9. ls -lR
+10. rm variables
+11. rmdir bin 
+12. cd /home
+13. mkdir bin 
+14. mkdir oldlogs
+15. mkdir 2017 2018 2019 
+16. touch 2017.log 
+17. touch 2018.log
+18. touch 2019.log
+19. cd /home
+20. rm -rf Algo1/log/oldlogs
+21. cd /home
+22. find /home -name *.sh
+23. rm s*.sh
+24. history > Ariff01.220721.module3 
