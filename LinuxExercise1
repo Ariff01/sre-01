@@ -14,3 +14,4 @@ Exercise: Basic Commands to Survive
 12. cd /var
 13. ls -S -r -h
 14. lscpu
+15. history > Ariff.220721.module2
