@@ -12,4 +12,5 @@
 12. cd
 13. mkdir scripts
 14. echo $PATH
-15. PATH+=/"scripts"
+15. PATH=$PATH:~/script
+
