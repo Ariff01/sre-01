@@ -90,7 +90,7 @@ rm -i cat.output
 mkdir temp
 
 31. Set a variable named MYTEMP that references the new temp directory you just created
-MYTEMP=/temp
+export MYTEMP=$MYTEMP: ~/home/temp
 
 32. Run a command to see the value of the MYTEMP variable
 echo $MYTEMP
