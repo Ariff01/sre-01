@@ -1,0 +1,15 @@
+1. STOCK="AAPL" 
+2. echo $STOCK
+3. STOCK+="_US"
+4. PRICE=290.84
+5. "The current price of "$STOCK "is" $PRICE
+6. WHOAMI=$USER
+7. SERVERTYPE=$(uname)
+8. echo $SERVERTYPE
+9. CMD="uname -i"
+10. echo $CMD
+11. echo '$CMD'
+12. cd
+13. mkdir scripts
+14. echo $PATH
+15. PATH+=/"scripts"
