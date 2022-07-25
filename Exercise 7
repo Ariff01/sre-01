@@ -1,0 +1,71 @@
+Exit and save the file.
+:wq
+
+Run a word count on the file.
+wc -w avengers 
+
+Edit the file to add a blank line and type in "word count" followed by the value you just got.
+echo "word count 98" >> avengers
+
+Now use search and replace within the editor to replace every instance of the word the with THE. Ensure that you only catch the word the and not words that contain the letters the (like them).
+:%s/the /THE /g 
+
+Copy the first line of the file and paste it after your word count entry at the bottom of the file.
+yy
+(move cursor to last line)
+p
+
+Delete the first line of the file.
+(cursor to first line)
+dd
+
+Undo that deletion.
+u
+
+Insert at the top of the file the text "Captain America – Endgame" followed by an empty line.
+i
+paste "Captain America - Endgame" 
+
+Save the changes and exit the editor.
+:wq
+
+Find out the number of lines in the file now.
+wc -l avengers
+
+Write the number of lines into the file one line above the word count with the text "line count" plus the value.
+insert mode and add
+
+Delete "Good luck" wherever it occurs in the file.
+:%s/Good luck//g 
+
+Save and exit the file
+:wq
+
+Rename the file avengers.yourname and put it in the location specified by the instructor.
+mv avengers avengers.Ariff
+
+Run the fixGenerator.sh script again from your home directory using the following commands:
+./fixGenerator.sh &
+
+Run a search for all new order singles in the fix log output and put the output of that search into a file named newOrders.log in your home directory.
+/39=0
+cat fixlog20220725094709.log | grep "39=0" > ~/newOrders.log
+
+Open newOrders.log in your editor.
+vi newOrders.log
+
+Duplicate the first line in the file.
+yy - p
+
+Go to the fifth line in the file and duplicate it also.
+scroll to line 5
+yy - p
+
+Find and replace every instance of MTHREE with M3.
+:%s/MTHREE/M3/g
+
+Find and replace every ; (semicolon) with a , (comma) and ensure there is no space after the commas.
+:%s/;/,/g
+
+Save and exit the file.
+:wq
