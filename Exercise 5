@@ -20,7 +20,7 @@ Run a process check on the server but only output the User, pid and cmd columns 
 ps -ef |awk '{print $1 " " $2 " " $8}' or ps -eo pid,cmd,user
 
 Run a process check to pull all of the process ids running on the server and put the output into a file named list in your home directory.
-ps -ef |awk '{print $1}'|sort -u > list
+ps -ef |awk '{print $2}'|sort -u > list
 
 Run the following series of commands:
 sleep 300 &
