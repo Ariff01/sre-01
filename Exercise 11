@@ -54,8 +54,11 @@ Filesystem Avail
 2) Write a shell script which uses function to print hello world
 vi hello
 #!/bin/bash
-echo "Hello World"
-:wq
+
+function hw {
+        echo "Hello World"
+}
+hw
 chmod 700 hello
 # ./hello outputs-> Hello World
 
