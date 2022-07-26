@@ -41,6 +41,7 @@ Addtional questions
 1) Create a script to summarize available disk space and present in a logical and readable fashion
 #removed tempfiles | output filesystems and disk space available 
 vi dsa
+#!/bin/bash
 df -h | grep -v "tmpfs" | awk '{ print $1,$4 }'
 chmod 700
 ./dsa
@@ -49,4 +50,12 @@ Filesystem Avail
 /dev/root 5.5G
 /dev/xvda15 100M
 --------------------
+
+2) Write a shell script which uses function to print hello world
+vi hello
+#!/bin/bash
+echo "Hello World"
+:wq
+chmod 700 hello
+# ./hello outputs-> Hello World
 
