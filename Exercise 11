@@ -1,0 +1,76 @@
+Exercise 11: Cron (Part 1)
+
+Ensure the fixGenerator.sh script is installed in your home directory.
+
+Set up the script to run Monday-Friday at 6am.
+00 06 * * Mon,Tues,Wed,Thurs,Fri ~/fixGenerator.sh
+
+Set up the script to run at 6pm every Friday.
+00 18 * * Fri ~/fixGenerator.sh
+
+Set up the script to run every half hour from 9-4 on Monday, Wednesday and Friday.
+*/30 09-16 * * Mon,Wed,Fri ~/fixGenerator.sh
+
+Set up the script to run every other hour every day.
+00 * * * * ~/fixGenerator.sh
+
+Set up the script to run on May 4th at midday.
+00 12 04 05 * ~/fixGenerator.sh
+
+Set up the script to run on the 1st of every month at 6:25am.
+25 06 01 * * ~/fixGenerator.sh
+
+Set up the script to run every 20 minutes every Tuesday between 10am and 2pm.
+*/20 10-14 * * Mon ~/fixGenerator.sh
+
+Set up the script to run the 1st of every other month on the hour.
+00 */1 01 */1 * ~/fixGenerator.sh
+
+Set up the script to run at 6am and 8am on Saturday and Sunday.
+00 06,08 * * Sat,Sun ~/fixGenerator.sh
+
+Part 2: Review Exercises
+
+(Working with Files)
+Create a file named seq1.txt and write a sentence of your choice in it.
+cat > seq1.txt
+
+Create a file named seq2.txt and write a sentence of your choice in it.
+cat > seq2.txt
+
+Create a file named seq3.txt and write a sentence of your choice in it.
+cat > seq2.txt
+
+Generate a list of these files and add the list to another file named list.txt.
+ls seq* > list.txt
+
+Use a single command to copy the contents of all files with seq in the name into a file named total.txt.
+mkdir total.txt && cp seq* total.txt
+
+Write a single command that shows how many files you have in your current directory.
+ls -1 | wc -l
+
+(Working with Text)
+Do a case-insensitive search of the file for hobbit and output the results to the screen.
+grep -iF "hobbit" LOTR.txt
+
+Put the first eight lines and the last three lines into a new file named LOTRtxt.
+cat head -8 LOTR.txt | tail -3 LOTR.txt | > LOTRtxt.txt
+
+Run a command on the command line to replace all occurrences of Gollum with Thanos and output the results into a new file named LOTRMarvel.txt.
+sed s/Thanos/Gollum/g LOTR.txt > LOTRMarvel.txt
+
+On the command line, run a command to compare the LOTR.txt with LOTRMarvel.txt.
+diff LOTR.txt LOTRMarvel.txt
+
+Change the permission on LOTR.txt so that it is read and executable for others and group, and fully accessible for the current user.
+chmod 755 LOTR.txt
+
+Count the number of words in LOTR.txt.
+wc -w  LOTR.txt
+
+Rename the LOTR.txt file to LordOfTheRings.txt.
+mv LOTR.txt LordOfTheRings.txt
+
+Create a compressed tarball named LOTR.tar.gz that includes all the files you have created in this set of exercises.
+tar -cvf LOTR.tar.gz ~
