@@ -259,6 +259,7 @@ done
 
 
 
+
 2.When the user chooses to stop or after 10 numbers have been entered, the program stops prompting for values and performs the following calculations:
 the product of the integers
 the average of the integers
@@ -278,14 +279,13 @@ max=-2147483647
 
 for((i=1; i<=x; i++))
 do
-  declare -n numb="num$i"
-  prod=$((prod*numb))
-  sum=$((sum+numb))
-  if [ $numb -lt $min ]
-  then min=$numb
+  prod=$((prod*num$i))
+  sum=$((sum+num$i))
+  if [ $((num$i)) -lt $min ]
+  then min=$((num$i))
   fi
-  if [ $numb -gt $max ]
-  then max=$numb
+  if [ $((num$i)) -gt $max ]
+  then max=$((num$i))
   fi
 
 done
@@ -302,8 +302,7 @@ echo ----------------------------------
 echo Entered $x numbers as follows:
 for((i=1; i<=x; i++))
 do
-  declare -n number="num$i"
-  echo -n "'$number' "
+  echo -n "'$((num$i))' "
 done
 echo -e "\nProduct of numbers: $prod"
 echo Average of numbers: $avg
@@ -493,21 +492,66 @@ else
    mkdir ~/FixGen/logs
    echo "logs directory has been created"
 
+#move all log files to logs folder, move old log files(4th and older) to another oldlogs folder and zip the oldlogs
+
 echo "Compressing the logs files older than the latest 3 files..."
-# find the fixlong files, cut the name of the files, sort, remove the first 3 latest files and append to logfilez
-find ~/FixGen -name "fixlog*" | awk -F  "/" '/1/ {print $5}' | sort -r | tail -n +4 > logfilez
-#zip files??
+find -name "fixlog20*" -exec mv -t ~/FixGen/logs {} +
+mv "`ls -t ~/FixGen/logs | tail -n +4`" ~/FixGen/oldlogs
+tar cvfz oldlog.tar.gz  ~/FixGen/oldlogs
 
-# trying to see if can have all files in logs and then make a zip in there
-mv ~/FixGen/fixlog* ~/FixGen/logs
+echo "Creating new log file in logs folder"
+~/FixGen/logs/fixGenerator.sh &
 
-
-#??
 #cron 
 0 6 * * 1-5 ~/FixGen/logs/fixGenerator.sh
 
+Activity 16
+Write a script that will output a csv that could be loaded into ITRS Geneos for monitoring on your fixGen script.
+
+It needs to parse the log file and produce a count of each message type that has been received or sent.
+Ensure you distinguish in the csv file if the message was sent or received.
+Also ensure you display the message type in English so it is easy to understand in monitoring. 
+An example might look like:
+Number of Partial fills,12
+
+~Script 16~
+
+echo "Enter log file name: "
+read log
+#or find the latest file directly in FixGen/logs with find and sort head 1
+
+"Number of new order messages,`grep -n "39=0" $log | wc -l`" > file
+#Do for all types of fix messages with >> to append to file from the first command above
+
+# use sed to replace \n newline to , comma
+sed -z 's/\n/,/g;s/,$/\n/' file > file.csv
 
 
+##Did not learn Fix protocol, haven't attempted the last 2 questions
+
+Activity 17
+Create a script to convert your fix log file into a useful csv.
+
+Pull out the following information for each message:
+
+If the fix tag is in the message, leave a blank in the csv so that it will load appropriately in Excel.
+Translate the message type value into meaningful words.
+Ensure you have a header row in your csv file:
+Client, Message type, stock, quantity, price, side, order id, last quantity, exec id, last price 
+Client, Message type, stock, quantity, price, side, order id, last quantity, exec id, last price
+
+Activity 18
+Run the fixGenerator script to generate a fix log file.
+
+Create a script to parse that log file and for each order create a text description of what happened with that order.
+This should go into a log file with a paragraph for each order.
+For example:
+
+New buy order for apple with order id 12335, 100 shares at price 54.2 
+Partial fill for apple with order id 12335, 20 shares at price 54.2
+Cancel message for apple with order id 12335
+Final state of order for apple with order id 12335: traded 40 shares at price 54.2. 
+Remember that each time you run the fix generator script, it creates a new log file so this is a good way to test.
 
 
 
