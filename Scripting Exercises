@@ -1,0 +1,513 @@
+Scripting Exercises
+#!/bin/bash
+
+Activity 1
+Create a simple shell script to tell the user about their session – they need to know:
+
+What their username is
+What the current date is
+What the time is
+What their current working directory is
+How many files they have in that directory
+What is the biggest file in their current directory
+
+~Script~
+
+echo Username: $USER
+echo Date: `date +%m/%d/%Y`
+echo Time: `date +%H:%M:%S`
+echo Directory: `pwd`
+echo no. of files: `ls -1 | wc -l`
+echo Biggest file: `ls -S | head -n 1`
+
+Activity 2
+Create a directory with a few test files in it (the files can be empty). 
+Now write a script that for every file in that directory you rename it to have an extension of today's date in YYYYMMDD format.
+
+mkdir dir && touch ./dir/{file1,file2,file3}
+~Script~
+
+DATE=`date +%Y%m%d`
+mv ./dir/file1 ./dir/file1$DATE 
+mv ./dir/file2 ./dir/file2$DATE 
+mv ./dir/file3 ./dir/file3$DATE 
+
+Activity 3
+You are in charge of creating a program for the lottery in your area! The options are for numbers between 1and 50. 
+Create a script that picks 5 for each draw plus a bonus ball number between 1 and 10. Output the numbers to a file that has the date in its name.
+Create another script that will allow users to check their lottery numbers and advise them if they match or not and how many matches they got.
+
+~Script~
+#5 draws
+for i in {1..5}
+do  echo $[ $RANDOM % 40 + 10 ]
+done
+#bonus draw
+echo $[ $RANDOM % 10 + 1 ]
+-----------------------------------
+#output results to file 
+./activity3 > results`date +%Y%m%d`
+-----------------------------------
+~Script~
+#Let users check their lottery results 
+lottery(){
+
+echo "Please key in your lottery number: "
+read lot
+
+num=$(grep $lot ~/results20220728 | wc -l)
+if [ $num == 0 ]
+  then echo "You did not win"
+else
+  echo "You've won, congratz!"
+fi
+lottery
+}
+lottery
+#could have input all lottery numbers of user into a file and compare with the results file instead
+
+Activity 4
+Write a script to validate how secure someone's password is. Things you would care about:
+
+Length should be 8 or more characters
+The password should contain numbers and letters
+There should be both uppercase and lowercase letters
+
+echo "Please key in your password for security check: "
+read pass
+wordnum=$(echo "$pass" | wc -c)
+
+#check length
+if [ $wordnum -lt 8 ]
+  then echo "Password length insufficient, needs to be 8 or more characters, please change"
+else
+  echo "Password length is sufficient, good"
+fi
+
+#check alphanumeric
+if [[ $pass == *[[:digit:]]* ]] &&
+   [[ $pass == *[[:alpha:]]* ]]
+  then echo "Password is alphanumeric, good"
+else
+  echo "Password needs to be alphanumeric, please change"
+fi
+
+#check if password contains both upper and lowercase letters
+
+if [[ $pass =~ [A-Z] ]] && [[ $pass =~ [a-z] ]]
+  then echo "Password contains both upper and lowercase letters, good"
+else
+  echo "Password does not have both upper and lower case letter, please change"
+fi
+
+
+Activity 5
+Write a script that takes a number as an input and reverses it out to the user. 
+For example, if the original number is 74985, the output should be 58947.
+
+~Script~
+
+echo "Please input value to be reversed: "
+read value
+
+reverse=`echo $value | rev`
+echo "Your reversed string is: $reverse"
+
+Activity 6
+Create a script that takes two number parameters a and b and then shows True if a is larger than b or False otherwise.
+Create a second version of the script that then tells the user the difference between the two numbers.
+Remember to code defensively – ensure that your script handles things appropriately if someone enters things incorrectly!
+
+~script 1~
+
+echo "Please input first number: "
+read a
+echo "Please input second number: "
+read b
+
+#redirect stderr and shows my error msg for non interger input, exits program
+re='^[0-9]+$'
+if ! [[ $a =~ $re ]] || ! [[ $b =~ $re ]]; then
+   echo "error: Please enter INTEGERs only" >&2; exit 1
+fi
+
+if [ $a -gt $b ]
+  then echo True
+elif [ $a -lt $b ]
+  then echo False
+fi
+
+~script 2~
+
+echo "Please input first number: "
+read a
+echo "Please input second number: "
+read b
+
+#redirect stderr and shows my error msg for non interger input, exits program
+re='^[0-9]+$'
+if ! [[ $a =~ $re ]] || ! [[ $b =~ $re ]]; then
+   echo "error: Please enter INTEGERs only" >&2; exit 1
+fi
+
+#find absolute difference 
+difference=$((a-b))
+echo The difference is: ${difference#-}
+
+Activity 7
+Create a 10-question true or false quiz game in your script. Choose a topic of your liking for the questions!
+
+~script~
+
+#5 questions quiz on astronomy
+results=0
+echo "Today's quiz is on Astronomy, here are your 5 questions..."
+
+sleep 2
+echo "Question 1(easy): Which is the nearest planet to Earth? (hint: Elon)"
+read planet
+
+if [ ${planet,,} == mars ]
+  then echo "YES"
+  results=$((results+1))
+else
+  echo "nope"
+fi
+
+sleep 1
+echo "Question 2(easy): Which planet is the biggest in our solar system? (hint: peter)"
+read planet2
+
+if [ ${planet2,,} == jupiter ]
+  then echo "YES"
+  results=$((results+1))
+else
+  echo "nope"
+fi
+
+sleep 1
+echo "Question 3(intermediate): Which galaxy as we in? (hint: dairy)"
+read planet3
+planet3=`echo $planet3 | sed 's/ //g'`
+if [ ${planet3,,} == milkyway ]
+  then echo "YES"
+  results=$((results+1))
+else
+  echo "nope"
+fi
+
+sleep 1
+echo "Question 4(intermediate): How many moons does Mars have? (hint: earth+=1)"
+read planet4
+
+if [ ${planet4,,} == two ] || [ $planet4 == 2 ]
+  then echo "YES"
+  results=$((results+1))
+else
+  echo "nope"
+fi
+
+sleep 1
+echo "Question 5(hard): What is the brightest star visible from Earth? (hint: Prisoner of Azkaban)"
+read planet5
+
+if [ ${planet5,,} == sirius ]
+  then echo "YES"
+  results=$((results+1))
+else
+  echo "nope"
+fi
+
+echo "End of quiz, computating results..."
+sleep 2
+echo "Your score is $results/5, thank you for participating"
+
+Activity 8
+Create a script that completes the following tasks:
+
+1. It prompts the user for a series of 5-10 integers.
+The user must be prompted for a minimum of 5 numbers.
+After the user has entered 5 numbers, the program should allow the user to stop entry or enter another number.
+
+~Script 8.1~
+#part1 Input 5 integers minimum and 10 maximum
+#giving option to stop after 5
+
+for i in {1..11}
+do
+  if [ $i -eq 11 ]
+    then echo "You've reached the max of 10 integers"
+    export i=$(($i-1))
+    break
+  fi
+
+  if [ $i -gt 5 ]
+    then echo "Add 'end' next to the integer to stop (e.g. 27end)"
+  fi
+
+  echo "Input an integer $i: "
+  read num$i
+  declare -n num="num$i"
+
+  if [[ $num =~ "end" ]]
+
+    then declare num$i="$(sed s/end//g <<<$num)"
+    break
+  fi
+
+done
+
+
+
+2.When the user chooses to stop or after 10 numbers have been entered, the program stops prompting for values and performs the following calculations:
+the product of the integers
+the average of the integers
+the sum of the integers
+the min of the integers
+the max of the integers
+
+~script 8.2~
+#part2 arithmetic operations
+
+x=$i
+prod=1
+avg=0
+sum=0
+min=2147483647
+max=-2147483647
+
+for((i=1; i<=x; i++))
+do
+  declare -n numb="num$i"
+  prod=$((prod*numb))
+  sum=$((sum+numb))
+  if [ $numb -lt $min ]
+  then min=$numb
+  fi
+  if [ $numb -gt $max ]
+  then max=$numb
+  fi
+
+done
+avg=$((sum/x))
+
+
+
+3.After performing the calculations, the program should display the following to the user:
+the values the user entered
+each of the calculations, using a phrase that identifies the value
+
+~Script 8.3~
+echo ----------------------------------
+echo Entered $x numbers as follows:
+for((i=1; i<=x; i++))
+do
+  declare -n number="num$i"
+  echo -n "'$number' "
+done
+echo -e "\nProduct of numbers: $prod"
+echo Average of numbers: $avg
+echo Sum of numbers: $sum
+echo Minimum number: $min
+echo Maximum number: $max
+
+
+Activity 9
+Write a script that takes a file name as a parameter.
+
+If the file exists, print an error and return a code.
+If the file does not exist, create the file.
+
+~Script 9~
+
+echo "Enter your filename"
+read newfile
+if [ -f "$newfile" ]
+
+   then echo "File already exists!"
+   exit 1
+
+else
+   echo "Creating $newfile file"
+   touch $newfile
+   exit 0
+fi
+
+
+Activity 10
+
+Write a script that writes random numbers to a file (one number per line).
+
+The first parameter should be the file name.
+The second parameter is the number of lines to write.
+If the specified file already exists, display a relevant message and return a code.
+
+~Script 10~
+
+echo "Enter your filename"
+read newfile
+if [ -f "$newfile" ]
+
+   then echo "File already exists!"
+   exit 1
+
+else
+   echo "Creating $newfile file"
+   touch $newfile
+
+fi
+
+echo "Number of lines to write: "
+read line
+
+for i in `seq $line`
+do
+  echo -e $RANDOM
+done > ./$newfile
+
+Activity 11
+Create a file that includes the following numbers.
+5 6 3 7 4 4 9 6 7 9 8 2 3 6 4 5 1 1 3 10 12
+
+Write a script that uses this file to perform the following tasks:
+Read in the file
+Sort the numbers into reverse order and output them to the screen
+Each number should output exactly once. Duplicate numbers should not appear in the output.
+
+#create file11 with the numbers
+cat > file11
+5 6 3 7 4 4 9 6 7 9 8 2 3 6 4 5 1 1 3 10 12
+crtl+d
+
+~Script 11~
+cat file11 | awk -v RS="[ \n]+" '!n[$0]++'
+ 
+Activity 12
+Write a script that checks if two files have at least one common element or not. Display an appropriate message for both scenarios. 
+The file names should be specified as parameters. You will need to create the files to test this.
+
+~Script 12~
+
+echo "Input first file name: "
+read file1
+echo "Input second file name: "
+read file2
+
+comm -12 $file1 $file2 > x && [ -s x ] && echo "Common element found" || echo "No common element found"
+
+#echo "Similarities found, common elements are as follow: " && cat x 
+#use above code to list out the similarities 
+
+Activity 13
+Write a script that takes two files of unique numbers and displays the difference between the two lists (without using grep).
+For example:
+File 1 contains: File 2 contains:
+1                1
+2                2
+4                89
+6                6
+                 7
+
+The output should look like:
+Only in file 1:
+4
+Only in file 2:
+89
+7
+
+~Script 13.1~
+
+#without grep
+echo "Input first file name: "
+read file1
+echo "Input second file name: "
+read file2
+
+start=`date +%s.%N`
+
+echo "Only in file 1: "
+diff --changed-group-format='%<' --unchanged-group-format='' <(sort $file1) <(sort $file2)
+echo "Only in file 2: "
+diff --changed-group-format='%>' --unchanged-group-format='' <(sort $file1) <(sort $file2)
+
+end=`date +%s.%N`
+
+runtime=$( echo "$end - $start" | bc -l )
+echo "time taken $runtime"
+
+~Script 13.2~
+
+echo "Input first file name: "
+read file1
+echo "Input second file name: "
+read file2
+
+start=`date +%s.%N`
+
+echo "Only in file 1: "
+grep -Fxvf $file2 $file1
+echo "Only in file 2: "
+grep -Fxvf $file1 $file2
+
+end=`date +%s.%N`
+
+runtime=$( echo "$end - $start" | bc -l )
+echo "time taken $runtime"
+
+#1 diff time taken .010740492
+#2 grep time taken .004515586
+#grep faster
+
+Activity 14 **where is the file and folder mentioned?**
+In the materials folder on the server you will find a file called books. Copy this file to your home directory.
+
+Write a script that will parse the file, producing an output csv file that will list the word and each time it appears in the file.
+
+Make sure the list is sorted in the file such that the most common word is listed at the top and then descending. 
+For example, a couple of lines in the output file should look like this:
+
+And,200
+Is,195
+
+Activity 15
+Imagine that you support the fix Generator script. Write a wrapper script to set up your environment properly. 
+You can also edit the fixGenerator script if you need to.
+
+Your fixGenerator script should be in a folder called FixGen in your home directory. The script needs to do the following:
+
+Check for a folder called FixGen/logs and if not present create it
+Compress all log files that are not the latest 3 logs files generated.
+Run the FixGenerator script with the log file being generated into the FixGen/logs directory.
+Once complete, add a cron job that will run Monday through Friday 6 a.m. to establish your environment.
+
+Remember to code defensively and ensure that you use exit codes so we know the job has successfully run. 
+Your script should also output its own log file where we can see the status each step of the way of each part of the script.
+
+
+~Script 15~
+
+echo "Checking if logs exist in FixGen directory..."
+if [ -d ~/FixGen/logs ]
+   then echo "logs exist"
+else
+   mkdir ~/FixGen/logs
+   echo "logs directory has been created"
+
+echo "Compressing the logs files older than the latest 3 files..."
+# find the fixlong files, cut the name of the files, sort, remove the first 3 latest files and append to logfilez
+find ~/FixGen -name "fixlog*" | awk -F  "/" '/1/ {print $5}' | sort -r | tail -n +4 > logfilez
+#zip files??
+
+# trying to see if can have all files in logs and then make a zip in there
+mv ~/FixGen/fixlog* ~/FixGen/logs
+
+
+#??
+#cron 
+0 6 * * 1-5 ~/FixGen/logs/fixGenerator.sh
+
+
+
+
+
+
