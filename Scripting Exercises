@@ -230,29 +230,42 @@ The user must be prompted for a minimum of 5 numbers.
 After the user has entered 5 numbers, the program should allow the user to stop entry or enter another number.
 
 ~Script 8.1~
-#part1 Input 5 integers minimum and 10 maximum
-#giving option to stop after 5
+#Allow user to input 5 integers minimum and 10 maximum, auto end loop
+#giving option to stop after 5 by adding 'end' to integer input
+#cannot exit loop by adding 'end' to first 5 intergers
+#repeat the same iteration if user enters non-integer
 
-for i in {1..11}
+for((i=1; i<=11; i++))
 do
+#auto exit loop after 10th iteration
   if [ $i -eq 11 ]
     then echo "You've reached the max of 10 integers"
-    export i=$(($i-1))
+    i=$(($i-1))
     break
   fi
-
+#option to exit after 5th integer
   if [ $i -gt 5 ]
     then echo "Add 'end' next to the integer to stop (e.g. 27end)"
   fi
-
-  echo "Input an integer $i: "
+#input integers
+  echo "Input integer $i: "
   read num$i
   declare -n num="num$i"
-
-  if [[ $num =~ "end" ]]
-
+#prevent exit before 6th integer by removing the inputted 'end'
+  if [[ $i -lt 6 && $num =~ "end" ]]
+    then declare num$i="$(sed s/end//g <<<$num)"
+  fi
+#remove the inputted 'end' string and exit loop
+  if [[ $i -gt 5 && $num =~ "end" ]]
     then declare num$i="$(sed s/end//g <<<$num)"
     break
+  fi
+#check if non integer is entered, prompt to re-enter integer 
+  re='^[0-9]'
+  if ! [[ $num =~ $re ]]; then
+   echo "error: Please enter INTEGERs only"
+   i=$(($i-1))
+   continue
   fi
 
 done
