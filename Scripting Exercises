@@ -261,7 +261,7 @@ do
     break
   fi
 #check if non integer is entered, prompt to re-enter integer 
-  re='^[0-9]'
+  re='^[0-9]+$'
   if ! [[ $num =~ $re ]]; then
    echo "error: Please enter INTEGERs only"
    i=$(($i-1))
