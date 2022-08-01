@@ -470,7 +470,7 @@ echo "time taken $runtime"
 #2 grep time taken .004515586
 #grep faster
 
-Activity 14 **where is the file and folder mentioned?**
+Activity 14
 In the materials folder on the server you will find a file called books. Copy this file to your home directory.
 
 Write a script that will parse the file, producing an output csv file that will list the word and each time it appears in the file.
@@ -480,6 +480,11 @@ For example, a couple of lines in the output file should look like this:
 
 And,200
 Is,195
+
+~script 14~
+
+awk '{a[$1]++}END{for(k in a)print a[k],k}' RS=" |\n|," ~/materials/book | sort -r | sed -z 's/\n/,/g;s/,$/\n/' > book.csv
+ 
 
 Activity 15
 Imagine that you support the fix Generator script. Write a wrapper script to set up your environment properly. 
@@ -513,7 +518,7 @@ mv "`ls -t ~/FixGen/logs | tail -n +4`" ~/FixGen/oldlogs
 tar cvfz oldlog.tar.gz  ~/FixGen/oldlogs
 
 echo "Creating new log file in logs folder"
-~/FixGen/logs/fixGenerator.sh &
+~/FixGen/logfixGenerator.sh &
 
 #cron 
 0 6 * * 1-5 ~/FixGen/logs/fixGenerator.sh
@@ -551,9 +556,20 @@ If the fix tag is in the message, leave a blank in the csv so that it will load 
 Translate the message type value into meaningful words.
 Ensure you have a header row in your csv file:
 Client, Message type, stock, quantity, price, side, order id, last quantity, exec id, last price 
-Client, Message type, stock, quantity, price, side, order id, last quantity, exec id, last price
 
-Activity 18
+~script 17~
+echo "Enter csv log file name: "
+read log
+
+#remove whichever tags (39=0 etc.) into a blank space
+sed s/39=0/ /g $log
+...
+#adding header to main csv by creating header csv file and appending
+echo "Client","Message type", "stock", "quantity", "price", "side", "order id", "last quantity", "exec id", "last price"  > header.csv && cat $log >> header.csv && mv header.csv $log
+
+
+
+Activity 18 *do not know fix protocol to accurately answer this*
 Run the fixGenerator script to generate a fix log file.
 
 Create a script to parse that log file and for each order create a text description of what happened with that order.
@@ -565,6 +581,23 @@ Partial fill for apple with order id 12335, 20 shares at price 54.2
 Cancel message for apple with order id 12335
 Final state of order for apple with order id 12335: traded 40 shares at price 54.2. 
 Remember that each time you run the fix generator script, it creates a new log file so this is a good way to test.
+
+#create fixlog
+
+~/FixGen/fixGenerator.sh &
+
+cat > file
+New buy order for apple with order id 12335, 100 shares at price 54.2 
+Partial fill for apple with order id 12335, 20 shares at price 54.2
+Cancel message for apple with order id 12335
+Final state of order for apple with order id 12335: traded 40 shares at price 54.2.
+<crtl D>
+
+echo "type in order id:"
+read order
+#cut and replace the order id from the parsed order ID in file
+sed s/12345/$order/g file
+
 
 
 
