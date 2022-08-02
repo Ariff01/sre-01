@@ -1,0 +1,47 @@
+Acid compliance allows the RDMS to be able to withstand the effects of failed transactions and not become corrupt,
+as well as allows for the dynamictiy of having multiple users without isses
+
+A-Atomicity
+C-Consistency
+I-Isolation
+D-Durable
+
+Atomicity maintains a database from being affected by transactions which fail, 
+whereby in the process of executing this transaction, changes to the database will revert back to its intial state,
+IF this transaction were to fail midway.  
+If your transaction is such that you are accessing a bank account A to transfer $100 to B(1), and B needs to transfer $200 to C(2), 
+but if B had $0 to start with, then query(2) will fail since after (1), B has only $100 and not minimum of $200 to tranfer to C
+Thus, instead of remaining in the failed state of after the (1) query, this will revert to the intial state before $100 tranfer to B from A
+
+Consistency ensures that a database is in a correct state by having constraints in place. 
+For example a column of ID number has a constraint to be always positive, hence one cannot update a negative entry under it
+Primary and foreign keys are common contraints
+Prevent transactions that challeges or have triggers to support the consistency
+
+Isolation of RDMS is to allow of multiple users accessing a database, whereby changes are being made in sequential transactions.
+This prevents actions of one user affecting the action of another 
+
+-serializable-> in simple terms, prevent A from making chnages to a database until B has commited his/her changes, since B started to edit first
+meanwhile the data is inaccssible for changes. Example will be the GV ticketing system whereby after one clicks on the select ticket type, 
+another person will not be able to access the seat that he is in the midst of transacting even though that seat has not been officially purchased yet
+
+-Read uncommited-> Opposite of serializable, whereby changes can be made conncurrently regardless of sequence. Higher possibility for failures
+
+Durablilty refers to having a permenant storage for commmited tarnsactions, regardless of system failures these transactions need to be stored securely
+in a non volatile memory such as hard drives. 
+
+Transaction logs are created seperately to a database by recording all the transactions. In case of system failures, the logs can be used to undo uncommited changes
+reverting to the original all-commited state of the DB. This is aided with the full backups which as periodically done but not as frequcnt given the size of a full database
+Database clustering are done to ensure that in timesof system crashes in one server, another server can get the DB up and running. Costs of servers are to be managed in a firm.
+
+
+
+
+
+
+
+
+
+
+
+
