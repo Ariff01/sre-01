@@ -1,0 +1,40 @@
+Normalization reduces data redundancy in a relational database and improves performance
+since data redundancy makes the table of records more complex with mutiple repetitions
+Updating these repeated records takes up alot of time unnecessatily, wherby the room for an accidentally error is slim
+Having to insert or delete a particular record is dependant on other fields of that row
+
+The normalization process starts from a heap table, which is unstructures without contrainsts, which is denormalized 
+Normal forms has to be assigned to start the process in a sequential manner from 1 to 3 
+
+1NF
+- independant ordering of records and fields from top to bottom and left to right
+- Each row can be uniquely identified (can use a primary key ID column for e.g.)
+- each record has 1 value only 
+
+2NF
+This need to satify a 1NF and have all coulms except primary key to be related to one another 
+and every non primary key column is depedant on the primary key for a table
+
+3NF
+2NF satisfied and none of the non primary key column are transitively dependant on the primary key 
+Hence these transitive dependancies has to be removed 
+
+Denormalisation is done by having the constraints to normalise a data be reversed, such that it tends towards a 1NF normalisation structure 
+The advantage will be the reduced computational power required to access a less complex data structure 
+
+Entitiy relationaship diagrams 
+This is a visual representation of a database structure 
+
+It consists of the following:
+Name of table 
+Fields list (columns)
+field detials with portion of dat, datatype etc. 
+Identification of all primary and foreign key fields
+table relations 
+
+Table are linked by either one to many, many to one or many to many relations by using lines to link them 
+There are specific symbols to use to represent these relations 
+
+
+
+
