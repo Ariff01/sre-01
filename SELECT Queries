@@ -28,7 +28,9 @@ Exercise: SELECT Queries
 
 14) select `name` from ExerciseCategory where ParentCategoryID is not null;
 
-15) select `name`,notes from `Workout` where LevelId=3 and notes like '% you %';
+15) select `name`,notes from `Workout` where LevelId=3 and notes like '% you %'; 
+(or use'%you%' if not looking for a standalone 'you', results will includes 'your','joyous' etc.)
+
 
 16) select FirstName,LastName,City from `Client` 
 where (LastName like('L%')or('M%')or('N%'))
