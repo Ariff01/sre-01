@@ -31,8 +31,8 @@ Exercise: SELECT Queries
 15) select `name`,notes from `Workout` where LevelId=3 and notes like '% you %';
 
 16) select FirstName,LastName,City from `Client` 
-where (LastName like 'L%' or lastname like 'M%' or lastname like 'N%')
-and city='LaPlace';
+where (LastName like('L%')or('M%')or('N%'))
+and City='LaPlace';
 
 17)  select invoiceid,`description`,price,quantity,price*quantity
 as line_item_total from InvoiceLineItem 
