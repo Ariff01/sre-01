@@ -29,7 +29,7 @@ Exercise: SELECT Queries
 14) select `name` from ExerciseCategory where ParentCategoryID is not null;
 
 15) select `name`,notes from `Workout` where LevelId=3 and notes like '% you %'; 
-(or use'%you%' if not looking for a standalone 'you', results will includes 'your','joyous' etc.)
+#or use'%you%' if not looking for a standalone 'you', results will includes 'your','joyous' etc.
 
 
 16) select FirstName,LastName,City from `Client` 
@@ -39,6 +39,7 @@ and City='LaPlace';
 17)  select invoiceid,`description`,price,quantity,price*quantity
 as line_item_total from InvoiceLineItem 
 where (price*quantity) between 15 and 25
+#use HAVING instead of WHERE to replace <(price*quantity)> with <line_item_total> 
 
 18) select Login.* 
 from Login  
