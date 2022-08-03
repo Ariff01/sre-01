@@ -43,7 +43,12 @@ from Login
 inner join `Client` 
 on Login.ClientId = `Client`.ClientId where FirstName='Estrella' and LastName='Bazely';
 
-19) select `name` from Goal 
+19) select `name` from Goal where GoalId in (select GoalId from WorkoutGoal 
+where WorkoutId = (select WorkoutId from Workout where `name`='This is Parkour'));
+
+or
+
+select `name` from Goal 
 inner join (select GoalId from WorkoutGoal 
 where WorkoutId = (select WorkoutId from Workout where `name`='This is Parkour')) as z
 on z.GoalId=Goal.GoalId;
