@@ -1,0 +1,62 @@
+Creating Database schema: MovieCatalouge
+create database MovieCatalouge;
+use MovieCatalouge;
+
+#Creating Genres table
+create table Genres(
+GenreID int primary key,
+GenreName varchar(30) not null 
+);
+
+#Creating Director table
+create table Director(
+DirectorID int primary key,
+FirstName varchar(30) not null, 
+LastName varchar(30) not null,
+BirthDate date 
+);
+
+#Creating Rating table
+create table Rating(
+RatingID int primary key,
+RatingName char(5) not null 
+);
+
+#Creating Movies table
+create table Movies(
+MovieID int primary key,
+GenreID int not null ,
+DirectorID int,
+RatingID int ,
+Title varchar(128) not null,
+ReleaseDate int
+);
+
+#Creating Actor table
+create table Actor(
+ActorID int primary key,
+FirstName varchar(30) not null, 
+LastName varchar(30) not null,
+BirthDate date 
+);
+
+#Creating CastMembers table
+create table CastMembers(
+CastMemberID int primary key,
+ActorID int not null,
+MovieID int not null,
+`Role` varchar(50) not null
+);
+
+alter table Movies
+add constraint fk_MoviesGenre foreign key (GenreID) references Genres(GenreID),
+add constraint fk_MoviesDirector foreign key (DirectorID) references Director(DirectorID),
+add constraint fk_MoviesRating foreign key (RatingID) references Rating(RatingID)
+;
+
+alter table CastMembers 
+add constraint fk_CastMembersActor foreign key (ActorID) references Actor(ActorID),
+add constraint fk_CastMembersMovies foreign key (MovieID) references Movies(MovieID)
+;
+
+#SHOW CREATE TABLE `Movies`;
