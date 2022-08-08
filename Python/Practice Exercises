@@ -16,17 +16,17 @@ Prompt the user for the new value for that item.
 Change the Contact data appropriately and display the updated Contact data to the user.
 
 #code
-fn="Robert"
-ln="Taylor"
-add="25 Main Street"
+firstname="Robert"
+lastname="Taylor"
+address="25 Main Street"
 city="Paterson"
 state="NJ"
 zip="07501"
 phone="201-857-5309"
-contactstr=['fn','ln','add','city','state','zip','phone']
-contact=[fn,ln,add,city,state,zip,phone]
+contactstr=['firstname','lastname','address','city','state','zip','phone']
+contact=[firstname,lastname,address,city,state,zip,phone]
 
-change=input("input which data you would like to change?")
+change=input("input which data you would like to change? (firstname,lastname,address,city,state,zip,phone)")
 new=input("What is the new data to input?")
 for count,i in enumerate(contactstr):
   if change==i:
@@ -41,14 +41,14 @@ complete street address, city, state, zip, phone number, and email address.
 
 Display the contact to the user after accepting all entries.
 
-fn,ln=input("input firstname and lastname").split()
-add=input("input address")
+firstname,lastname=input("input firstname and lastname").split()
+address=input("input address")
 city=input("input city")
 state=input("input state")
 zip=input("input zip")
 phone=input("input phone number")
 email=input("input email address")
-contact=[fn,ln,add,city,state,zip,phone,email]
+contact=[firstname,lastname,address,city,state,zip,phone,email]
 print(contact)
 
 
@@ -63,15 +63,15 @@ Prompts the user to select a value to change.
 Updates the selected value with a new input value.
 
 #code
-fn,ln=input("input firstname and lastname").split()
-add=input("input address")
+firstname,lastname=input("input firstname and lastname").split()
+address=input("input address")
 city=input("input city")
 state=input("input state")
 zip=input("input zip")
 phone=input("input phone number")
 email=input("input email address")
-contact=[fn,ln,add,city,state,zip,phone,email]
-contactstr=['fn','ln','add','city','state','zip','phone','email']
+contact=[firstname,lastname,address,city,state,zip,phone,email]
+contactstr=['firstname','lastname','address','city','state','zip','phone','email']
 print(contact)
 
 change=input("input which data you would like to change? (firstname,lastname,address,city,state,zip,phone,email)")
