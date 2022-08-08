@@ -24,5 +24,5 @@ x=hr*hw
 y=x*4
 z=y*12
 
-print(f"Hi {fn.capitalize()} {ls.capitalize()}! How are you?\nI hope the weather is nice in {city} \
+print(f"Hi {fn.capitalize()} {ls.capitalize()}! How are you?\nI hope the weather is nice in {city.capitalize()} \
 \nBased on the info you provided, you earn ${x} per week,approximately ${y} per month and ${z} per year")
