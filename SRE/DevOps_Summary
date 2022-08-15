@@ -4,5 +4,5 @@ in iterations to focus on sub projects for the main deployment of the underlying
 There is a dynamic feedback loop to allows for contant changes within the iterations, for a less risk on approach
 as compared to having to troubleshoot at the complete end phase, which can be tedious and costly. The waterfall approach which does nto have the feedback loop 
 as the agile methodology is more useful for vague projects that does not require micro managed changes. 
-Devops is not a tool or a title, it is a practice used in software development and the tools used in this practice is highly versatile 
-to enable integration between the various aspects in a team for a smooth operation.   
+Devops is not a tool or a title, it is a practice used in software development and the tools used in this practice,such as Git,Docker,Jenkins etc.
+are highly versatile to enable integration in a team for a smooth operation.   
