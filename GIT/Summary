@@ -1,0 +1,60 @@
+Git is a tool which can be used for collabration between developers working on a project. Can be used to track changes, locate where exactly when,where and who created errors due to specific commits in the branch. Various bracnhes fro different developers to work on simulatneously and merge to main branch upon approval or forced merging by pull request. Can be worked on using a terminal or an interface like GitHub website. 
+
+
+
+
+~Terminal~
+
+Main commands to add and retrieve files (Git <command>)
+
+from working desktop directory to staging area to local repo to remote repo
+add .
+commit -m "commit message"
+push 
+
+from remote repo to local repo
+fetch
+
+local repo to working directory 
+reset
+
+staging area to working directory
+restore
+
+from remote repo directly to working directory 
+pull
+
+create branch
+branch "branch name"
+
+change to new branch 
+checkout "branch name"
+
+Join branches
+merge "another branch"
+
+show the status of working tree(untracked files etc.)
+status
+
+show recent chnages made such as commits
+log
+
+.gitignore files are not shown, not even as untracked
+
+
+
+
+~Git console~
+GitHub
+
+Able to add files in a new repo "add file" (create new file/upload files)
+Search to speific file names with "Go to file"
+create a copy of the repo using "Fork", independant repo does not affect the main project
+"pull requests" made to request to merge your updated code with another branch, main branch for e.g., or forcefully merge
+Show repos with "pin" on your profile 
+saved other repos with "star"
+clone under "code" using the link provided to create a local repo in working desktop , works with github desktop 
+
+
+In conclusion:
+Both console and terminal and useful to operate Git functions, but as a software engineer it is more beneficial to operate in terminal given the versatile commands for operating Git. The Github console is a great interface for front end observation and readability. 
