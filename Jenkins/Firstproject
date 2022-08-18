@@ -1,0 +1,30 @@
+Started by user admin
+Running as SYSTEM
+Building in workspace /var/lib/jenkins/workspace/python
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/lib/jenkins/workspace/python/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Ariff01/wiley-sre-01 # timeout=10
+Fetching upstream changes from https://github.com/Ariff01/wiley-sre-01
+ > git --version # timeout=10
+ > git --version # 'git version 2.34.1'
+ > git fetch --tags --force --progress -- https://github.com/Ariff01/wiley-sre-01 +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision ccc3be00a95dafeb9d4738d8d3e4e915482424ed (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f ccc3be00a95dafeb9d4738d8d3e4e915482424ed # timeout=10
+Commit message: "Update jenkins.py"
+ > git rev-list --no-walk fa59a57ef0285031fee44f39ec81e58c5628bf7f # timeout=10
+[python] $ /bin/sh -xe /tmp/jenkins12719572588574966626.sh
++ cd Python
++ python3 ./jenkins.py
+J
+E
+N
+K
+I
+N
+S
+This is a test for Jenkins to run a Github script
+Finished: SUCCESS
