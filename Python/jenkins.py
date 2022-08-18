@@ -1,3 +1,4 @@
+#python freestyle job
 a='JENKINS'
 
 for i in a:
