@@ -3,6 +3,7 @@
 #check if process is there
 ps -ef | grep processname
 
+#Section4
 section4(){
 sudo rm -f /var/run/app.lock
 sudo service processname start
@@ -12,6 +13,7 @@ echo "lock file has been removed and application started"
 
 if grep '404' /var/log/processname/error.log 
 then 
+#Section 1
       if grep 'children=4' /etc/app.conf
       then
             section4
@@ -24,6 +26,7 @@ then
 
 elif if grep '203' /var/log/processname/error.log
 then
+#Section 2
       if [[ "$(pgrep processname | awk '{print $1}' | ps -o user | awk '{print $1;exit}')" != "myappuser" ]]
       then
             USER="myappuser"
@@ -51,6 +54,7 @@ then
 
 elif [ diff1 -lt 2 ] || [ diff2 -lt 2 ]
 then
+#Section3
       command=$(netstat -tln | grep 8080)
       if [[ -n $command ]] && netstat -tlnp | awk '{print $7} | grep -L /processname
       then
