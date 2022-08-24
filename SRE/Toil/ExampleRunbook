@@ -1,0 +1,69 @@
+#Runbook script used to fix an application if unresponsive by following a decison path
+
+#check if process is there
+ps -ef | grep processname
+
+section4(){
+sudo rm -f /var/run/app.lock
+sudo service processname start
+echo "lock file has been removed and application started"
+}
+
+
+if grep '404' /var/log/processname/error.log 
+then 
+      if grep 'children=4' /etc/app.conf
+      then
+            section4
+      else
+            ##check that the configuration management system has been configured correctly for this host and push that configuration
+      fi   
+
+
+
+
+elif if grep '203' /var/log/processname/error.log
+then
+      if [[ "$(pgrep processname | awk '{print $1}' | ps -o user | awk '{print $1;exit}')" != "myappuser" ]]
+      then
+            USER="myappuser"
+	    GROUP="myappuser"
+      fi
+
+      if [[ "$(ls -la /var/log/processname | awk '{print $3}')" != "myappuser" ]]
+      then
+            chmod -R myappuser /var/log/processname
+      fi
+
+      section4
+
+
+ 
+lastUpdateerror="$(stat -c %Y error.log)"
+lastUpdateoutput="$(stat -c %Y output.log)"
+now="$(date +%s)"
+let diff1="(${now}-${lastUpdateerror})/60"
+let diff1="(${now}-${lastUpdateoutput})/60"
+
+elif [ diff1 -gt 2 ] && [ diff2 -gt 2 ]
+then 
+      section4
+
+elif [ diff1 -lt 2 ] || [ diff2 -lt 2 ]
+then
+      command=$(netstat -tln | grep 8080)
+      if [[ -n $command ]] && netstat -tlnp | awk '{print $7} | grep -L /processname
+      then
+            # dentify the team that owns this process and why it has been launched on your server
+	    # terminate the process, kill PID
+                        
+else 
+      section4
+
+fi     
+
+
+
+
+
+
