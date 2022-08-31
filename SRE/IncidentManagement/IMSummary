@@ -1,0 +1,181 @@
+Incident Management Summary
+
+Incident Management
+PostMortems
+Embracing Risk,Feedback,Fatigue
+
+INCIDENT MANAGEMENT
+
+IT Service Management framework ITIL defines an incident as:
+An unplanned interruption of a service, or reduction in the quality of a service
+
+Incident management plan
+Clearly describe the issue
+• How detected or who manually triggered the incident
+• Date and time the incident was reported
+• Description of the incident
+• Incident category
+• Level of the incident
+
+Incident management process
+
+-Identify key roles and clear chain of command
+
+-Define responsibilities
+
+-Capture response efforts for future analysis and learning
+
+-Communicate
+
+Well defined and rehearsed Incident Management Process
+• Faster incident resolution (MTTR = Mean time
+to restore, repair, respond or recovery)
+• Reduced costs and/or revenue loss
+• Improved internal/external communications
+• Continuous improvement and learning
+
+Managed by objectives
+-Establish measurable objectives for the response
+Strategies
+Tactics
+Tasks
+Activities
+
+-Issue assignments in a specific and timeboxed manner
+
+-Monitoring the results of the incident tasks
+
+Incident Management Key Roles
+Incident Manager
+Deputy
+Scribe
+
+Operations Lead
+Communications Lead
+Planning Lead
+
+Incident Commander
+Responsible for overall coordination
+• Keeps incident moving towards resolution
+Coordinates all the other roles
+• De facto holder of any roles not delegated to
+others
+Delegates tasks
+• Should not be personally making changes
+Only role always filled
+
+Scribe
+Assists IC
+• Captures communication
+• Captures actions
+• Captures discussion from
+conference bridge
+Use visible communication tool
+• Chatroom (Slack/Teams/etc)
+• Google docs
+Focus on capturing all information
+for future use
+
+Operations Lead
+Works with the IC
+• Develop theories about what is broken and why
+• Recommend changes to the IC
+• Coordinate the operation team's efforts to
+restore the service
+Makes sure changes are made in a controlled
+manner
+Makes sure that only operation teams are making
+changes to the system
+Brings in subject matter experts (SMEs) to assist
+
+Communications Lead
+Communications are critical
+• Internal
+• External
+Periodic updates
+• Status page
+• Social media
+• Direct communication
+May be delegated to maintain incident
+documentation
+• Communication
+• Post incident analysis
+
+Planning Lead
+Supports OL and IC
+• Capturing long-term issues
+• Creating tickets
+• Arranging handoffs
+• Tracking system divergence from SLO
+Supporting Operations teams
+• Ordering food
+
+SME On-Call Responsibilities
+• Familiarize yourself with the other roles
+• Join the incident communications channel ASAP
+• Offer theories and suggests
+• Support decisions are made by the Incident Commander
+• Keep focus on resolving the incident
+• Leave the incident channel when asked
+
+Identify impacts of incident
+Who and how many are impacted
+• Service unavailable
+• SLO/SLA in violation
+• Monetary
+- Loss of income
+- Penalties
+- Fines
+• Regulatory
+- Legal risk
+- Loss of license/permit to operate
+- Criminal risk
+
+CLosing incident requires documentations of everything during incident management 
+Preventive measures
+- What cause(s) can be eliminated
+• Key indicators to monitor
+- Prevention or early notice of future incidents
+
+
+An incident postmortem brings people together to discuss the details of an incident: 
+Why it happened
+Impact
+Actions taken to mitigate it and resolve it
+What should be done to prevent it from happening again
+
+Distinguish betweeen blameful and blameless postmortem
+Calling out of individuals discouraged, blameless path, to allow for less tension and more truthful documentation 
+
+Risk embracing is encouraged since every system is bound to fail, better to be prepared for it
+
+Complexity of system guarantees hardware failure
+-Cloud 
+Security attacks
+-Organization may or may not know they have been attacked
+Database corruption
+Component update
+-Behave unexpectedly
+
+Respone to failure 
+-Plan
+-Learn
+-Practice
+
+
+ALert fatugue can lead to burnout during on call rotations 
+-result in productivity decline 
+
+Reduce Toil
+-Tasks that are toil don’t provide a lot of value. Rather, they keep engineers from progressing with product and service development
+-If teams spend the majority of their time on these tasks, they have less time for high-value work. This prohibits innovation
+
+Update Alerts
+Eliminate false positives
+Improve information that accompanies alert
+Point to likely resources for faster fix
+Assign some alerts to automate ticket generation
+Focus on those that need immediate human intervention
+
+
+
