@@ -1,0 +1,37 @@
+Splunk is used for log analysis 
+
+data input to forwarders send data to indexer to be stored
+and accessed by search heads to use for alerts/reporting etc. 
+
+deployer issues config updates to search heads/cluster members
+
+cluster master monitors the indexers/peer nodes
+and manages the search heads to access specific indexers 
+through the captain of the search heads cluster
+
+deployment server similar job as deployer but is for forwarders
+e.g. config updates for forwarders 
+
+------------------------------------------------------
+Summary for splunk config(will require more depth)
+
+1. Setup fowarder instance(FI) and cluster master instance (CMI)
+2. Link FI to CMI through a port,e.g 9997
+
+3. (change port to listening state for input)
+e.g. in CMI, ./splunk enable listen 9997
+ 
+4. Add the log file which is to be fowarded to which indexer as well 
+e.g in FI, ./splunk add monitor <logfile> -index main -sourcetype "nameofmonitoring"
+
+*p.s: use ./splunk assuming you are already in the directory which has the splunk file)
+*GUI available for CMI,not FI(both can access through CLI)
+
+**not yet researched on how to add the logfile from a particular server instance's logfile for 
+<logfile> implementation in 2.2.Which will be the EXB services etc; in JPM context 
+
+
+
+
+Splunk cmd
+index="main"(see step 4.) - shows logs as events in the index called main as configured
