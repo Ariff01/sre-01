@@ -1,0 +1,171 @@
+LINUX (AWS server - ssh -i "id_rsa" ubuntu@54.179.48.16)
+
+/bin/ - binary 
+echo $$ - bash process ID
+&& or ; or || - and , and , or 
+top - dynamics view of all process on your host (live)
+ps - process staus 
+-ef (f) - provies infomration in columns (space f to show child process tree format)
+-eo a,b,c - shows only columns a,b and c
+f (ps -ef f) shows tree format of fruther process 
+| grep "root" | "/user/bin" | head -2 - find all process that is root and in user/bin and first two 
+ps aux - shows all process running and not running (all,users,non terminal process)
+& - pushes script to a background process to simultaneously run other proces
+bg - check number of background process running
+bg %1 - first background process
+fg processname - bring the background process to foreground
+jobs - list of running job process
+watch filename - to monitor file output status 
+watch -d="string" filename = to live monitor for the string keyword output
+watch file1| file2 - multiple files 
+nohup file - keep processes running even after exiting the shell or terminal 
+nohup file1 > file2 2>&1 & - to get error message in file2 and output file1 
+
+awk {print %1} file1 - prints first column in file1 
+sed 's/word1/word2/g' file1 - find and replace word1 to word2 in file1
+sed -r for regular instances 
+(within vi use :%s/word1/word2/g)
+find . -name '.sh*' - find everything in home directory that has ".sh""
+
+diff  
+
+test -d filename 
+
+
+
+kill processID - kills the process 
+kill -9 processID - force kills process
+killall processname - kills by name
+ping "website" - check server (pingdom.com check ping)
+traceroute "website" - see the routers hopped until last 
+netstat - status of networks (network socket)
+ifconfig - see ip address details (show network interfaces on your session)
+
+nas - network area storage (single storage shared by mutiple devies as shared storage)
+san - storage area network (network access to multiple storage)
+
+tar c(v)f(J,z,j) "file1.tar" "filename to add" - creating a file1.tar.(xz,gz,bz2) zipfile and archive filename in
+tar rf 'file1.tar' "filename to append" - append in new files to the tar file 
+tar --delete -f "file1.tar" "files to delete" - delete files in tar file
+tar xf "file1.tar" "optional file name" - to extract all files or some files
+-xf (if its .tar.xz)
+-zxf (if it is .tar.gz)
+-xjf (if its .tar.bz2)
+
+
+
+df - disk space of filesystem
+du - disk usage of files
+ls - listing your files 
+-R - all directories files subdirectories sub files
+-l - long detailed format
+-S - sort by size
+-r - reverse 
+-h - human-readable format
+-t - sort by time 
+-a - including hidden
+
+etc - software directory
+whoami - username
+su - superuser
+pwd - check which directory you in (print working directory)
+cd/cd ~ - change directory to home
+cd ./x/y/z - current directory(.) to sub directories(z) 
+cd ..- goes to one folder up 
+. - hidden older path starts with dot (for file/directory name)
+man - manual (man ls for e.g.)
+history - all commands used prev
+lscpu - hardware version
+
+mkdir - create directory
+vi/nano/touch - create file
+[Create directory and file simultaneously shown below]
+mkdir 'directory name' && touch ./dirname/file1
+mkdir dname dname/{a,b,c} - subdirectories and main directory created
+rm - remove file (rm 'file1' 'file2')
+rm -d - remove directory
+rm -f - forceful
+rm -r - remove directories which has subdirectories (recursive)
+rm -i - remove file with warning to user
+rmdir - remove directory
+
+vairable = variablevalue - setting variable
+unset variable  - unsetting variable
+echo "variable" = variable 
+echo $variable = variable value
+env variable=value - setting the preset variable
+env - show all varibales in system
+
+cat file - output file content
+cat -n file - output file with numbered lines
+cat > file - clear file and append in new content to be typed, crtl D to save and exit
+cat file1 > file2 - use output of file1 and dublicate as file2
+cat file1 >> file2 - use output of file1 and append into file2 as new data to it lastline
+echo "Hello" > file1 - uses "Hello" to clear and add into file1
+echo "Hello" >> file1 - uses "Hello" to append into file1 as addtional text
+cat file | more - search file content by space(screen) or enter(line)
+cat filename | less - better scrollable format using up down keys (/ search down,? search up)
+tac - reverse output
+cat file 2> file2 - stderr errors from file sent to file 2
+
+cron - to scehdule scripting 
+cd /var/log to see cron log
+* * * * * - mins, hours, day, month, day of month, year
+
+control m/ auto sys for 
+
+| - and
+-i - prompt before changes are made 
+vi filename - open/create text file to edit (:wq to save and exit to CL)
+cat file1 file2 - see multiple files output
+less/more file1 - see more of file or less lines
+mv file1 ./folder/ - move file to folder
+mv -R folder
+mv file* ./folder/- move all files to folder
+mv *.log folder - move evrything that end with .log to folder
+mv -n file* ./folder/ - move all files without overriding 
+cp file 1 ./folder/ - copy file1 to foler
+cp -R directory1 directory2 - to copy everything including sub directoryies 
+ln ./file1 /home/ubuntu/file - linking file and file1 
+ln -s ./file1 /home/ubuntu/file2 - symbolic soft link 
+grep filerword file1 - filtering (add -i for case insensitive)
+tail/head file - bottom/top 10 lines
+tail -n 20 file - bottom 20 lines 
+
+
+vi 
+[CMD] :help- all shortcuts 
+/abc - searches abc in textfile (press n for next) 
+dd - delete the line cursor is on
+
+ls -l - 1 3 3 3 (type owner(u) group(g) others(o))
+1- starts with d is directory, - is file 
+permission within the others:read write xecute 
+chmod 700 file5 - makes owner all permission,rest nothing
+chmod u+rwx file5 - makes owner all permission
+r-4
+w-2
+x-1
+
+chown USER FOLDER - add onwership for user to folder 
+
+
+version x.x.x - major.minor.patch updates
+
+
+generate keypair in gitbash by :
+ssh-keygen
+
+$ - bourne shell
+% - c shell
+
+
+
+
+
+
+
+
+
+
+
