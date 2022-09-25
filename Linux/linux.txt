@@ -114,7 +114,7 @@ cd /var/log to see cron log
 
 control m/ auto sys for 
 
-| - and
+| - output of left = input of right 
 -i - prompt before changes are made 
 vi filename - open/create text file to edit (:wq to save and exit to CL)
 cat file1 file2 - see multiple files output
